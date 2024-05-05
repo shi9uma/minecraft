@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name": "S3iUqaO7iUwlzKu",
+      "cwd": "/home/games/minecraft/servers/S3iUqaO7iUwlzKu",
+      "script": "/home/games/minecraft/servers/S3iUqaO7iUwlzKu/start_S3iUqaO7iUwlzKu.sh",
+      "restart_delay": 60000
+    }
+  ],
+  "cron_restart": "0 2 * * *"
+}

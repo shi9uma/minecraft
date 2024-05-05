@@ -1,0 +1,8 @@
+[
+  {
+    "uuid": "8b9cea28-5611-41a9-a750-307bc0de2a10",
+    "name": "__libc_read",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  }
+]
