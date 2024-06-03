@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/zsh
 
-init_name=S3iUqaO7iUwlzKu
+init_name="S3iUqaO7iUwlzKu" # 不要改这个
 package_name=""
 action=""
 
@@ -9,11 +9,11 @@ while [[ $# -gt 0 ]]; do
     case "$1" in
         --package_name)
             package_name="$2"
-            shift 2
+            shift 2 # 移过参数名和参数值
             ;;
         --action)
             action="$2"
-            shift 2
+            shift 2 # 移过参数名和参数值
             ;;
         *)
             echo "Unknown option: $1"
@@ -36,6 +36,7 @@ if [ "$action" = "show" ]; then
     echo "cd /home/games/minecraft/servers/$package_name"
     echo "find . -name \"*$init_name*\" -exec rename 's/$init_name/$package_name/' {} +"
     echo "find /home/games/minecraft/servers/$package_name -type f -name \"*.txt\" -exec sed 's/$init_name/$package_name/g' {} +"
+    exit
 elif [ "$action" = "run" ]; then
     target_dir=/home/games/minecraft/servers/$package_name
     if [ ! -d "$target_dir" ]; then
@@ -45,6 +46,8 @@ elif [ "$action" = "run" ]; then
     cd $target_dir
     find . -name "*$init_name*" -exec rename "s/$init_name/$package_name/" {} +
     replace_contents "$target_dir" "$init_name" "$package_name"
+    exec /home/games/minecraft/tools/statics.sh $package_name
 else
     echo "Usage: ./init.sh --package_name a_minecraft_server --action [show/run]"
+    exit
 fi
