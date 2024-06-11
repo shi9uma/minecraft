@@ -34,7 +34,8 @@ async def main(foobar = args['foobar'], port = args['port']):
         await client.close()
         return str(response[0].strip())
     except:
-        return f"port: {port} doesn't work."
+        _str = f"port: {port} doesn't work."
+        return f"\033[0m\033[1;31m{_str}\033[0m\033[1;31m"
         
 
 if __name__ == "__main__":
@@ -48,13 +49,13 @@ if __name__ == "__main__":
         }
         for port in ports.items():
             print(f"game port: {color(port[0], 3)}" + 
-                  f" - rcon port: {color(port[1], 3)}" + 
+                  f" - rcon port: {color(port[1], 2)}" + 
                   f" - command: {color(args['foobar'], 3)};\n" + 
-                  f"{color(asyncio.run(main()), 4)}\n" + 
+                  f"{color(asyncio.run(main(foobar = args['foobar'], port = port[1])), 4)}\n" + 
                   f"-" * 40)
     else:
         print(f"game port: {color(str(int(args['port']) - 1), 3)}" + 
-                f" - rcon port: {color(args['port'], 3)}" + 
+                f" - rcon port: {color(args['port'], 2)}" + 
                 f" - command: {color(args['foobar'], 3)};\n" + 
-                f"{color(asyncio.run(main()), 4)}\n" + 
+                f"{color(asyncio.run(main(foobar = args['foobar'], port = args['port'])), 4)}\n" + 
                 f"-" * 40)
