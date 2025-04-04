@@ -1,5 +1,6 @@
 import asyncio
 import argparse
+# pip install aio-mc-rcon
 from aiomcrcon import Client
 
 ap = argparse.ArgumentParser()

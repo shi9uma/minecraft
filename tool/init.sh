@@ -32,21 +32,21 @@ replace_contents() {
 
 # 根据action执行相应操作
 if [ "$action" = "show" ]; then
-    echo "cp -r /home/games/minecraft/tools/init/* /home/games/minecraft/servers/$package_name"
-    echo "cd /home/games/minecraft/servers/$package_name"
+    echo "cp -r /home/wkyuu/cargo/game/minecraft/tool/init/* /home/wkyuu/cargo/game/minecraft/server/$package_name"
+    echo "cd /home/wkyuu/cargo/game/minecraft/server/$package_name"
     echo "find . -name \"*$init_name*\" -exec rename 's/$init_name/$package_name/' {} +"
-    echo "find /home/games/minecraft/servers/$package_name -type f -name \"*.txt\" -exec sed 's/$init_name/$package_name/g' {} +"
+    echo "find /home/wkyuu/cargo/game/minecraft/server/$package_name -type f -name \"*.txt\" -exec sed 's/$init_name/$package_name/g' {} +"
     exit
 elif [ "$action" = "run" ]; then
-    target_dir=/home/games/minecraft/servers/$package_name
+    target_dir=/home/wkyuu/cargo/game/minecraft/server/$package_name
     if [ ! -d "$target_dir" ]; then
         mkdir -p $target_dir
     fi
-    cp -r /home/games/minecraft/tools/init/* $target_dir
+    cp -r /home/wkyuu/cargo/game/minecraft/tool/init/* $target_dir
     cd $target_dir
-    find . -name "*$init_name*" -exec rename "s/$init_name/$package_name/" {} +
+    find . -name "*$init_name*" -type f -exec bash -c 'mv "$1" "${1//$2/$3}"' _ {} "$init_name" "$package_name" \;
     replace_contents "$target_dir" "$init_name" "$package_name"
-    exec /home/games/minecraft/tools/statics.sh $package_name
+    exec /home/wkyuu/cargo/game/minecraft/tool/static.sh $package_name
 else
     echo "Usage: ./init.sh --package_name a_minecraft_server --action [show/run]"
     exit

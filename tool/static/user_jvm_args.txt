@@ -1,0 +1,16 @@
+# Xmx and Xms set the maximum and minimum RAM usage, respectively.
+
+-Xms128M
+-Xmx10G
+-server
+-XX:+UseG1GC
+-XX:-UseAdaptiveSizePolicy
+-XX:-OmitStackTraceInFastThrow
+-Dfml.ignoreInvalidMinecraftCertificates=True
+-Dfml.ignorePatchDiscrepancies=True
+-Dfile.encoding=utf-8
+-javaagent:/home/wkyuu/cargo/game/minecraft/tool/authlib-injector.jar=https://littleskin.cn/api/yggdrasil
+-Dhttp.proxyHost=192.168.9.2
+-Dhttp.proxyPort=1080
+-Dhttps.proxyHost=192.168.9.2
+-Dhttps.proxyPort=1080
